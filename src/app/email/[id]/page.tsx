@@ -1,12 +1,13 @@
-// src/app/email/[id]/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { getEmailById, Email } from '@/services/api';
+// import { getEmailById, Email } from '@/services/api';
 import Headers from '@/components/Headers';
 import Footer from '@/components/Footer';
 import EmailDetail from '@/components/EmailDetail';
+import { Email } from '@/types/email';
+import { getEmailById } from '@/services/api';
 
 export default function EmailPage() {
   const { id } = useParams();

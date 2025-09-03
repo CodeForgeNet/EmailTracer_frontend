@@ -15,6 +15,8 @@ const EmailList: React.FC = () => {
     const fetchEmails = async () => {
       setLoading(true);
       setError(null);
+      console.log('Fetching emails...');
+      console.log('Filtered Subject:', filteredSubject);
       try {
         let data;
         if (filteredSubject) {
@@ -22,10 +24,11 @@ const EmailList: React.FC = () => {
         } else {
           data = await getLatestEmails();
         }
+        console.log('API Response Data:', data);
         setEmails(data.emails);
       } catch (err) {
         setError('Failed to fetch emails.');
-        console.error(err);
+        console.error('Error fetching emails:', err);
       } finally {
         setLoading(false);
       }

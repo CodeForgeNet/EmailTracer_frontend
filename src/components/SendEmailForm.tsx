@@ -1,3 +1,4 @@
+'use client';
 // src/components/SendEmailForm.tsx
 import { useState } from 'react';
 import { triggerRecheck } from '@/services/api';
