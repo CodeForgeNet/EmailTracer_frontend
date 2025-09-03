@@ -96,7 +96,7 @@ export default function SendEmailForm({
             value={customSubject}
             onChange={(e) => setCustomSubject(e.target.value)}
             placeholder={defaultSubject}
-            className="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
           <button
             onClick={handleRecheck}
