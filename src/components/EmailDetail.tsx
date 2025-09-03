@@ -1,8 +1,8 @@
 // src/components/EmailDetail.tsx
 import ESPBadge from './ESPBadge';
 import { formatDate } from '@/utils/dateFormatter';
-import { Email } from '@/services/api';
 import ReceivingChain from './ReceivingChain';
+import { Email } from '@/types/email';
 
 interface EmailDetailProps {
   email: Email;
