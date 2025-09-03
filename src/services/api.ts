@@ -1,7 +1,12 @@
 import { Email } from '@/types/email';
 
 // src/services/api.ts
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+// src/services/api.ts
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === 'production'
+    ? 'https://lucidgrowth-backend-ijm7.onrender.com' // NOTE: Replace with your actual backend URL
+    : 'http://localhost:3000');
 
 export interface EmailConfig {
   email: string;
