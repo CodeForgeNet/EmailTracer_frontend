@@ -1,11 +1,9 @@
 import { Email } from '@/types/email';
 
-// src/services/api.ts
-// src/services/api.ts
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ||
   (process.env.NODE_ENV === 'production'
-    ? 'https://lucidgrowth-backend-ijm7.onrender.com' // NOTE: Replace with your actual backend URL
+    ? 'https://lucidgrowth-backend-ijm7.onrender.com'
     : 'http://localhost:3000');
 
 export interface EmailConfig {
@@ -26,13 +24,13 @@ export async function getEmailConfig(): Promise<EmailConfig> {
   return response.json();
 }
 
-export async function getLatestEmails(): Promise<{
+export async function getAllEmails(): Promise<{
   count: number;
   emails: Email[];
 }> {
-  const response = await fetch(`${API_BASE_URL}/email/latest`);
+  const response = await fetch(`${API_BASE_URL}/email/all`);
   if (!response.ok) {
-    throw new Error('Failed to fetch latest emails');
+    throw new Error('Failed to fetch all emails');
   }
   return response.json();
 }

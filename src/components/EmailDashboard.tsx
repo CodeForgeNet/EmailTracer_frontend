@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { getLatestEmails } from '@/services/api';
+import React, { useCallback, useEffect, useState } from 'react';
+import { getAllEmails } from '@/services/api';
 import { formatDistanceToNow } from 'date-fns';
 import { Email } from '@/types/email'; // Import the Email type
 
@@ -10,50 +10,54 @@ export default function EmailDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null); // Specify the type as string | null
 
-  useEffect(() => {
-    async function fetchEmails() {
-      try {
-        setLoading(true);
-        const data = await getLatestEmails();
-        setEmails(data.emails);
-        setLoading(false);
-      } catch (err) {
-        console.error('Failed to fetch emails:', err);
-        setError('Failed to load recent emails');
-        setLoading(false);
-      }
+  const fetchEmails = useCallback(async () => {
+    try {
+      setLoading(true);
+      const data = await getAllEmails();
+      setEmails(data.emails);
+      setError(null); // Clear previous errors
+    } catch (err) {
+      console.error('Failed to fetch emails:', err);
+      setError('Failed to load emails');
+    } finally {
+      setLoading(false);
     }
-
-    fetchEmails();
-
-    // Set up auto-refresh every minute
-    const intervalId = setInterval(fetchEmails, 60000);
-    return () => clearInterval(intervalId);
   }, []);
 
-  if (loading)
-    return <div className="p-4 text-center">Loading recent emails...</div>;
+  useEffect(() => {
+    fetchEmails();
+  }, [fetchEmails]);
+
+  if (loading && emails.length === 0) {
+    return <div className="p-4 text-center">Loading emails...</div>;
+  }
+
   if (error) return <div className="p-4 text-center text-red-500">{error}</div>;
 
   return (
     <div className="p-4 sm:p-6 lg:p-10 w-full max-w-7xl mx-auto">
-      <h2 className="text-3xl font-extrabold mb-8 text-blue-700 flex items-center gap-3">
-        <span className="inline-block w-3 h-8 bg-blue-400 rounded-full"></span>
-        Recent Emails
-      </h2>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-3xl font-extrabold text-blue-700 flex items-center gap-3">
+          <span className="inline-block w-3 h-8 bg-blue-400 rounded-full"></span>
+          All Emails
+        </h2>
+        <button
+          onClick={fetchEmails}
+          disabled={loading}
+          className="px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        >
+          {loading ? 'Refreshing...' : 'Refresh'}
+        </button>
+      </div>
 
-      {emails.length === 0 ? (
+      {emails.length === 0 && !loading ? (
         <p className="text-gray-500 text-center py-8">
           No emails found. Check your email configuration.
         </p>
       ) : (
         <div className="w-full overflow-x-auto">
-          {' '}
-          {/* Added overflow-x-auto here */}
           <div className="w-full overflow-y-auto max-h-[600px] border border-gray-200 rounded-2xl bg-white shadow-md">
             <table className="min-w-full divide-y divide-gray-200 text-base">
-              {' '}
-              {/* Added min-w-full */}
               <thead className="bg-blue-100">
                 <tr>
                   <th className="px-6 py-4 text-left font-semibold text-gray-700 uppercase tracking-wide">
