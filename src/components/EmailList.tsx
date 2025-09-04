@@ -1,4 +1,3 @@
-// src/components/EmailList.tsx
 import React, { useEffect, useState } from 'react';
 import { Email } from '../types/email';
 import { getAllEmails, getEmailsBySubject } from '../services/api';

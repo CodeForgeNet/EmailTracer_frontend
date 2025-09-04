@@ -3,19 +3,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { getAllEmails } from '@/services/api';
 import { formatDistanceToNow } from 'date-fns';
-import { Email } from '@/types/email'; // Import the Email type
+import { Email } from '@/types/email';
 
 export default function EmailDashboard() {
-  const [emails, setEmails] = useState<Email[]>([]); // Specify the type as Email[]
+  const [emails, setEmails] = useState<Email[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null); // Specify the type as string | null
+  const [error, setError] = useState<string | null>(null);
 
   const fetchEmails = useCallback(async () => {
     try {
       setLoading(true);
       const data = await getAllEmails();
       setEmails(data.emails);
-      setError(null); // Clear previous errors
+      setError(null);
     } catch (err) {
       console.error('Failed to fetch emails:', err);
       setError('Failed to load emails');
@@ -58,7 +58,7 @@ export default function EmailDashboard() {
         <div className="w-full overflow-x-auto">
           <div className="w-full overflow-y-auto max-h-[600px] border border-gray-200 rounded-2xl bg-white shadow-md">
             <table className="min-w-full divide-y divide-gray-200 text-base">
-              <thead className="bg-blue-100">
+              <thead className="sticky top-0 z-10 bg-blue-100 ">
                 <tr>
                   <th className="px-6 py-4 text-left font-semibold text-gray-700 uppercase tracking-wide">
                     Subject

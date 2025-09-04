@@ -1,23 +1,3 @@
-// import { EspInfo } from '../types/email';
-
-// export default function ESPBadge({ esp }: { esp: EspInfo }) {
-//   const pct = Math.round(esp.confidence * 100);
-//   return (
-//     <div className="flex items-center gap-3">
-//       <span className="inline-flex items-center rounded-full bg-blue-600 px-3 py-1 text-sm text-white">
-//         {esp.name}
-//       </span>
-//       <div className="flex items-center gap-2">
-//         <div className="h-2 w-28 overflow-hidden rounded bg-gray-200">
-//           <div className="h-2 bg-blue-600" style={{ width: `${pct}%` }} />
-//         </div>
-//         <span className="text-sm text-gray-600">{pct}%</span>
-//       </div>
-//     </div>
-//   );
-// }
-
-// src/components/ESPBadge.tsx
 interface ESPBadgeProps {
   esp: string;
 }
@@ -40,6 +20,10 @@ export default function ESPBadge({ esp }: ESPBadgeProps) {
       bgColor = 'bg-purple-100';
       textColor = 'text-purple-800';
       break;
+    case 'icloud':
+      bgColor = 'bg-cyan-100';
+      textColor = 'text-cyan-800';
+      break;
     case 'amazon ses':
       bgColor = 'bg-yellow-100';
       textColor = 'text-yellow-800';
@@ -53,7 +37,6 @@ export default function ESPBadge({ esp }: ESPBadgeProps) {
       textColor = 'text-indigo-800';
       break;
     default:
-    // Keep default colors
   }
 
   return (
