@@ -1,7 +1,7 @@
 // src/components/EmailList.tsx
 import React, { useEffect, useState } from 'react';
 import { Email } from '../types/email';
-import { getLatestEmails, getEmailsBySubject } from '../services/api';
+import { getAllEmails, getEmailsBySubject } from '../services/api';
 import EmailDetail from './EmailDetail';
 
 const EmailList: React.FC = () => {
@@ -22,7 +22,7 @@ const EmailList: React.FC = () => {
         if (filteredSubject) {
           data = await getEmailsBySubject(filteredSubject);
         } else {
-          data = await getLatestEmails();
+          data = await getAllEmails();
         }
         console.log('API Response Data:', data);
         setEmails(data.emails);
