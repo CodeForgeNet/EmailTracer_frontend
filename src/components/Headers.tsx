@@ -30,7 +30,7 @@ export default function Header() {
             Home
           </Link>
           <a
-            href="https://github.com/your-username/lucidgrowth"
+            href="https://github.com/CodeForgeNet"
             className="text-gray-600 hover:text-blue-600 transition-colors"
             target="_blank"
             rel="noopener noreferrer"
