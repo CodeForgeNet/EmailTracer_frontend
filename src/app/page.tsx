@@ -1,9 +1,45 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import EmailDashboard from '@/components/EmailDashboard';
 import SendEmailForm from '@/components/SendEmailForm';
-import { getEmailConfig } from '@/services/api';
+import { getEmailConfig, EmailConfig } from '@/services/api';
 
-export default async function HomePage() {
-  const config = await getEmailConfig();
+export default function HomePage() {
+  const [config, setConfig] = useState<EmailConfig | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchConfig() {
+      try {
+        const emailConfig = await getEmailConfig();
+        setConfig(emailConfig);
+      } catch (err) {
+        setError('Failed to load email configuration. Please try again later.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchConfig();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex flex-col items-center justify-center">
+        <p className="text-gray-600 text-lg">Loading configuration...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex flex-col items-center justify-center">
+        <p className="text-red-600 text-lg">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex flex-col items-center justify-center">
@@ -26,10 +62,12 @@ export default async function HomePage() {
           <h2 className="text-2xl font-bold mb-6 text-blue-700 text-center">
             Send Test Email
           </h2>
-          <SendEmailForm
-            emailAddress={config.email}
-            defaultSubject={config.subject}
-          />
+          {config && (
+            <SendEmailForm
+              emailAddress={config.email}
+              defaultSubject={config.subject}
+            />
+          )}
         </div>
       </main>
 
