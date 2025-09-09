@@ -1,4 +1,3 @@
-// src/components/Footer.tsx
 export default function Footer() {
   return (
     <footer className="bg-gray-100 border-t">
@@ -6,7 +5,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-gray-600 text-sm">
-              &copy; {new Date().getFullYear()} LucidGrowth - Email Analysis
+              &copy; {new Date().getFullYear()} CodeForgeNet - Email Analysis
               Tool
             </p>
           </div>

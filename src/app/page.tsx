@@ -9,7 +9,7 @@ export default async function HomePage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex flex-col items-center justify-center">
       <header className="py-8 px-4 w-full flex flex-col items-center justify-center">
         <h1 className="text-5xl font-extrabold text-blue-800 drop-shadow mb-4 tracking-tight text-center">
-          LucidGrowth Email Tracker
+          Email Tracker
         </h1>
         <p className="text-gray-600 text-lg max-w-xl text-center">
           Analyze email delivery, trace receiving chains, and test custom
@@ -34,7 +34,7 @@ export default async function HomePage() {
       </main>
 
       <footer className="py-6 text-center text-gray-400 text-base w-full">
-        &copy; {new Date().getFullYear()} LucidGrowth. All rights reserved.
+        &copy; {new Date().getFullYear()} CodeForgeNet. All rights reserved.
       </footer>
     </div>
   );
