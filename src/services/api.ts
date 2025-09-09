@@ -3,7 +3,7 @@ import { Email } from '@/types/email';
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ||
   (process.env.NODE_ENV === 'production'
-    ? 'https://lucidgrowth-backend-ijm7.onrender.com'
+    ? 'https://emailtracer-backend-1.onrender.com/'
     : 'http://localhost:3000');
 
 export interface EmailConfig {
