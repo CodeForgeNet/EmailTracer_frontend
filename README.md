@@ -4,9 +4,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 First, run the development server:
 
-# LucidGrowth Frontend
+# Email Tracer Frontend
 
-Live Demo: [https://lucidgrowth-frontend-rosy.vercel.app/](https://lucidgrowth-frontend-rosy.vercel.app/)
+Live Demo: https://email-tracer-frontend.vercel.app/](https://email-tracer-frontend.vercel.app/)
 
 ## Overview
 
