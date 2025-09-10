@@ -57,8 +57,8 @@ lucidgrowth-frontend/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/CodeForgeNet/lucidgrowth-frontend.git
-   cd lucidgrowth-frontend
+   git clone git@github.com:CodeForgeNet/EmailTracer_frontend.git
+   cd EmailTracer_frontend
    ```
 2. Install dependencies:
    ```bash
@@ -117,7 +117,7 @@ For questions or support, contact [CodeForgeNet](mailto:support@codeforgenet.com
 
 ---
 
-**LucidGrowth Frontend** — Modern email dashboard and subject-based search, powered by Next.js and Tailwind CSS.
+**Email Tracer Frontend** — Modern email dashboard and subject-based search, powered by Next.js and Tailwind CSS.
 
 ```bash
 npm run dev
